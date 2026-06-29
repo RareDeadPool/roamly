@@ -26,15 +26,15 @@ export default function SectionTitle({
       {...props}
     >
       {tag && (
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-orange-600 mb-2">
+        <span className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-2">
           {tag}
         </span>
       )}
-      <h2 className="text-2xl font-extrabold text-deep-navy-900 sm:text-3xl tracking-tight">
+      <h2 className="text-2xl font-extrabold text-white sm:text-3xl tracking-tight text-shadow">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2 text-sm sm:text-base text-deep-navy-500 max-w-xl leading-relaxed">
+        <p className="mt-2 text-sm sm:text-base text-white/70 max-w-xl leading-relaxed">
           {subtitle}
         </p>
       )}

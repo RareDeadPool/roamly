@@ -21,7 +21,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-sand-50 font-sans text-deep-navy-950">
+      <body className="min-h-full flex flex-col font-sans text-white">
+        {/* ── Fixed full-page mountain background ── */}
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 -z-10"
+          style={{
+            backgroundImage: "url('/images/snowy-mountain.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center top",
+          }}
+        />
+        {/* Lighter overlay so mountain is clearly visible */}
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(160deg, rgba(7,14,35,0.30) 0%, rgba(10,20,50,0.22) 40%, rgba(5,10,28,0.45) 100%)",
+          }}
+        />
+
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
