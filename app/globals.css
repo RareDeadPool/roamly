@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sand-50: #fdfcf9;
+  --color-sand-100: #faf6f0;
+  --color-sand-200: #f4ecdf;
+  --color-sand-300: #eddcc4;
+  --color-sand-400: #e0c29f;
+  --color-sand-500: #cd9f74;
+  --color-sand-600: #b98154;
+  
+  --color-brand-orange-50: #fff7ed;
+  --color-brand-orange-100: #ffedd5;
+  --color-brand-orange-200: #fed7aa;
+  --color-brand-orange-300: #fdba74;
+  --color-brand-orange-400: #fb923c;
+  --color-brand-orange-500: #f97316;
+  --color-brand-orange-600: #ea580c;
+  --color-brand-orange-700: #c2410c;
+
+  --color-brand-teal-50: #f0fdfa;
+  --color-brand-teal-100: #ccfbf1;
+  --color-brand-teal-200: #99f6e4;
+  --color-brand-teal-300: #5eead4;
+  --color-brand-teal-400: #2dd4bf;
+  --color-brand-teal-500: #14b8a6;
+  --color-brand-teal-600: #0d9488;
+  --color-brand-teal-700: #0f766e;
+
+  --color-deep-navy-50: #f8fafc;
+  --color-deep-navy-100: #f1f5f9;
+  --color-deep-navy-200: #e2e8f0;
+  --color-deep-navy-300: #cbd5e1;
+  --color-deep-navy-400: #94a3b8;
+  --color-deep-navy-500: #64748b;
+  --color-deep-navy-600: #475569;
+  --color-deep-navy-700: #334155;
+  --color-deep-navy-800: #1e293b;
+  --color-deep-navy-900: #0f172a;
+  --color-deep-navy-950: #0a0f1d;
+}
+
+:root {
+  --background: #faf6f0; /* sand-100 */
+  --foreground: #0f172a; /* deep-navy-900 */
+  
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom scrollbars for a premium look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf6f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Custom utility for modern grid overlays */
+.grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
+/* Glassmorphism style */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
