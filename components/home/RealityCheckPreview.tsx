@@ -1,97 +1,207 @@
-import React from "react";
+"use client";
+
+import { motion } from "framer-motion";
+import { AlertTriangle, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { AlertTriangle, Quote, ArrowRight } from "lucide-react";
+
+const CHECKS = [
+  {
+    category: "Safety ⚠️",
+    dest: "Manali, HP",
+    quote: "This waterfall was beautiful but genuinely unsafe after 5 PM. The trail goes dark, signal drops, and you'll be completely alone. Do not go without a guide.",
+    author: "Priya S.",
+  },
+  {
+    category: "Hidden Costs 💸",
+    dest: "Jaipur, Rajasthan",
+    quote: "Cab drivers near Amber Fort quoted ₹600 for a 10-minute ride. Take a tuk-tuk or Rapido. The meter-less cabs near tourist spots are notorious.",
+    author: "Rohit M.",
+  },
+  {
+    category: "Overhyped 🙄",
+    dest: "Goa",
+    quote: "The famous café everyone posts about — not worth the 45-minute queue and ₹350 coffee. Found a local shack 200m away for ₹60 that tasted better.",
+    author: "Kavya N.",
+  },
+  {
+    category: "Practical 📱",
+    dest: "Spiti Valley, HP",
+    quote: "Carry cash. Lots of it. UPI failed everywhere after Kaza. Only BSNL SIM had signal. Airtel and Jio were completely dead for three days straight.",
+    author: "Arjun K.",
+  },
+  {
+    category: "Navigation 🗺️",
+    dest: "Uttarakhand",
+    quote: "The Google Maps shortcut to the forest trail was blocked by a landslide. Locals knew a different path but nobody updated the map. Always ask the dhaba uncle.",
+    author: "Sneha G.",
+  },
+  {
+    category: "Crowds 👥",
+    dest: "Rishikesh",
+    quote: "The famous viewpoint was stunning, but only before the sunrise crowd arrived. After 6:30 AM it becomes a selfie war zone with 200 people. Go at 5 AM.",
+    author: "Meera P.",
+  },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+const cardVariants = {
+  hidden: { opacity: 0, y: 36 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export default function RealityCheckPreview() {
-  const mockChecks = [
-    {
-      id: 1,
-      destination: "Kyoto, Japan",
-      category: "Crowd Levels 👥",
-      title: "Arashiyama Bamboo Forest at 10 AM",
-      quote: "Expect a wall of selfie-sticks and crowds. The quiet, spiritual walk shown on Instagram does not exist unless you go before 7:00 AM.",
-      author: "Emiko T."
-    },
-    {
-      id: 2,
-      destination: "Positano, Italy",
-      category: "Hidden Costs / Prices 💸",
-      title: "Valet & Private Parking Surcharges",
-      quote: "Valet parking for a small car is up to 100 Euros per day. Ferries are cheaper, faster, and offer better coastal views.",
-      author: "Marco R."
-    },
-    {
-      id: 3,
-      destination: "Iceland Golden Circle",
-      category: "Weather Realities ⛈️",
-      title: "Car Rental Door Liability warnings",
-      quote: "Winds can hit 50+ mph. Renters are fully responsible for doors getting ripped backward by gusts. Park facing the wind and hold doors tight.",
-      author: "Klara H."
-    }
-  ];
-
   return (
-    <section className="py-20 relative section-glass">
-      <div className="section-divider" />
+    <section
+      className="py-24 relative overflow-hidden"
+      style={{ background: "#203A32" }}
+    >
+      {/* Organic blob decorations */}
+      <motion.div
+        animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-20 -right-20 w-96 h-96 blob-1 pointer-events-none"
+        style={{ background: "rgba(84,191,203,0.08)", filter: "blur(50px)" }}
+      />
+      <motion.div
+        animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+        className="absolute -bottom-20 -left-20 w-80 h-80 blob-2 pointer-events-none"
+        style={{ background: "rgba(201,188,162,0.12)", filter: "blur(60px)" }}
+      />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
+      {/* Dot pattern (muted on dark) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(84,191,203,0.25) 1px, transparent 1px)",
+          backgroundSize: "30px 30px",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.65 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4"
+        >
           <div>
-            <div className="tag-pill mb-4">Unfiltered Truth</div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Reality <span className="gradient-text">Checks</span>
+            <span
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5"
+              style={{
+                background: "rgba(84,191,203,0.14)",
+                border: "1px solid rgba(84,191,203,0.25)",
+                color: "#8ED5DE",
+                boxShadow: "3px 3px 10px rgba(0,0,0,0.25), -2px -2px 8px rgba(255,255,255,0.05)",
+              }}
+            >
+              <AlertTriangle className="w-3.5 h-3.5" />
+              Unfiltered Truth
+            </span>
+            <h2
+              className="text-4xl sm:text-5xl font-extrabold mb-3 leading-tight"
+              style={{ fontFamily: "'Outfit', sans-serif", color: "#F0F8F6" }}
+            >
+              The stuff travel reels{" "}
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #8ED5DE, #54BFCB)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                don&apos;t tell you.
+              </span>
             </h2>
-            <p className="text-white/45 text-sm mt-2 max-w-md">
-              Understand crowds, scams, weather risks, and actual expenses before booking.
+            <p className="text-base leading-relaxed max-w-md" style={{ color: "rgba(207,229,232,0.65)" }}>
+              Roamly travelers share the raw, unfiltered moments that no
+              influencer will put in their reel.
             </p>
           </div>
           <Link
             href="/explore?tab=reality-checks"
-            className="hidden sm:flex items-center gap-1.5 text-sm font-bold text-orange-400 hover:text-orange-300 transition-colors glass px-4 py-2 rounded-xl mt-4 md:mt-0"
+            className="inline-flex items-center gap-1.5 text-sm font-bold px-5 py-2.5 rounded-full shrink-0 transition-all hover:scale-105"
+            style={{
+              background: "rgba(84,191,203,0.14)",
+              border: "1px solid rgba(84,191,203,0.25)",
+              color: "#8ED5DE",
+              boxShadow: "4px 4px 12px rgba(0,0,0,0.30), -2px -2px 8px rgba(255,255,255,0.04)",
+            }}
           >
-            Read all warnings
-            <ArrowRight className="w-4 h-4" />
+            Read all warnings <ArrowRight className="w-4 h-4" />
           </Link>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {mockChecks.map((item) => (
-            <div
-              key={item.id}
-              className="rounded-2xl p-6 space-y-4 transition-all duration-300 hover:-translate-y-1"
+        {/* Cards */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          {CHECKS.map((item) => (
+            <motion.div
+              key={item.quote.slice(0, 30)}
+              variants={cardVariants}
+              whileHover={{ y: -5 }}
+              className="p-5 rounded-[1.75rem] flex flex-col gap-4"
               style={{
-                background: "rgba(255, 255, 255, 0.09)",
-                backdropFilter: "blur(28px) saturate(1.7)",
-                WebkitBackdropFilter: "blur(28px) saturate(1.7)",
-                border: "1px solid rgba(251, 191, 36, 0.20)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.10)",
+                background: "linear-gradient(135deg, rgba(54,88,74,0.80) 0%, rgba(32,58,50,0.85) 100%)",
+                border: "1px solid rgba(84,191,203,0.14)",
+                boxShadow: "8px 8px 24px rgba(0,0,0,0.30), -4px -4px 14px rgba(255,255,255,0.04)",
+                transition: "all 0.28s cubic-bezier(0.34,1.56,0.64,1)",
               }}
             >
+              {/* Top */}
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-300 bg-amber-500/15 border border-amber-400/25 px-2.5 py-0.5 rounded-lg">
+                <span
+                  className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                  style={{
+                    background: "rgba(84,191,203,0.14)",
+                    border: "1px solid rgba(84,191,203,0.22)",
+                    color: "#8ED5DE",
+                  }}
+                >
                   {item.category}
                 </span>
-                <span className="text-xs text-white/40 font-semibold">{item.destination}</span>
+                <span className="text-xs font-semibold" style={{ color: "rgba(207,229,232,0.45)" }}>
+                  {item.dest}
+                </span>
               </div>
 
-              <div className="flex gap-2">
-                <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                <h4 className="font-bold text-white leading-snug text-shadow-sm">{item.title}</h4>
-              </div>
-
+              {/* Quote */}
               <div className="relative">
-                <Quote className="w-8 h-8 text-amber-400/20 absolute -top-3 -left-2" />
-                <p className="text-xs text-white/75 leading-relaxed pl-4 italic relative z-10">
-                  &ldquo;{item.quote}&rdquo;
+                <span
+                  className="text-6xl font-black absolute -top-3 -left-1 leading-none select-none opacity-10"
+                  style={{ color: "#8ED5DE" }}
+                >
+                  &ldquo;
+                </span>
+                <p className="text-sm leading-relaxed pl-3 relative z-10" style={{ color: "rgba(207,229,232,0.80)" }}>
+                  {item.quote}
                 </p>
               </div>
 
-              <div className="text-right text-[10px] text-white/55 font-bold">
-                &mdash; {item.author}
+              {/* Author */}
+              <div
+                className="text-right text-[11px] font-bold pt-3"
+                style={{
+                  color: "rgba(207,229,232,0.40)",
+                  borderTop: "1px solid rgba(84,191,203,0.12)",
+                }}
+              >
+                — {item.author}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

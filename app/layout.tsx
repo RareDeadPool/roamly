@@ -10,8 +10,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Roamly - Real Travel Itineraries & Budget Guides",
-  description: "Discover, create, remix, and share real travel itineraries. Uncover hidden gems, get reality checks, and find out what people regret missing.",
+  title: "Roamly — Real Travel Itineraries & Honest Travel Stories",
+  description:
+    "Discover, create, remix, and share real travel itineraries. Uncover hidden gems, get honest reality checks, and find out what people regret missing.",
+  keywords:
+    "travel itinerary, India travel, budget travel, hidden gems, travel community",
 };
 
 export default function RootLayout({
@@ -21,27 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans text-white">
-        {/* ── Fixed full-page mountain background ── */}
-        <div
-          aria-hidden="true"
-          className="fixed inset-0 -z-10"
-          style={{
-            backgroundImage: "url('/images/snowy-mountain.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center top",
-          }}
-        />
-        {/* Lighter overlay so mountain is clearly visible */}
-        <div
-          aria-hidden="true"
-          className="fixed inset-0 -z-10"
-          style={{
-            background:
-              "linear-gradient(160deg, rgba(7,14,35,0.30) 0%, rgba(10,20,50,0.22) 40%, rgba(5,10,28,0.45) 100%)",
-          }}
-        />
-
+      <body className="min-h-full flex flex-col font-sans" style={{ backgroundColor: "#EEF5F4", color: "#10201C" }}>
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
