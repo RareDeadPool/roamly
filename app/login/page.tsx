@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Compass, Mail, Lock, LogIn } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Container from "../../components/layout/Container";
 import Button from "../../components/shared/Button";
 
@@ -13,13 +14,28 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLoginSubmit = (e: React.FormEvent) => {
+  const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+
+      if (result?.error) {
+        alert("Invalid email or password");
+      } else {
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("An error occurred during sign in");
+    } finally {
       setLoading(false);
-      router.push("/dashboard");
-    }, 1000);
+    }
   };
 
   return (

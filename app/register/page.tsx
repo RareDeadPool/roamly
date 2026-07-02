@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Compass, User, Mail, Lock, UserPlus } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -12,13 +13,40 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleRegisterSubmit = (e: React.FormEvent) => {
+  const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (res.ok) {
+        // Automatically sign in after successful registration
+        const result = await signIn("credentials", {
+          redirect: false,
+          email,
+          password,
+        });
+
+        if (result?.error) {
+          router.push("/login?registered=true");
+        } else {
+          router.push("/dashboard?publish=welcome");
+        }
+      } else {
+        const data = await res.json();
+        alert(data.message || "Registration failed");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("An error occurred during registration");
+    } finally {
       setLoading(false);
-      router.push("/dashboard?publish=welcome");
-    }, 1000);
+    }
   };
 
   return (
